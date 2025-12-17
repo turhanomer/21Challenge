@@ -18,5 +18,9 @@ module challenge::day_01 {
     //
     // Remember: Constants must be named in UPPERCASE!
 
+    const NUMBER: u64 = 16;
+    const FLAG: bool = false;
+    const MY_ADDRESS: address = @0x3;
+
 }
 
