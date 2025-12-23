@@ -41,7 +41,7 @@ module challenge::day_05 {
         let length = vector::length(&list.habits);
 
         if (index < length) {
-            let habit = vector::borrow_mut(&mut list.habits, index)
+            let habit = vector::borrow_mut(&mut list.habits, index);
 
             habit.completed = true;
         }
