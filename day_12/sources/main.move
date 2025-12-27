@@ -49,14 +49,19 @@ module challenge::day_12 {
     }
 
     // TODO: Write a function 'find_task_by_title' that:
-    // - Takes board: &TaskBoard and title: &String
-    // - Returns Option<u64> (the index if found, None if not found)
-    // - Loops through tasks and compares titles
-    // public fun find_task_by_title(board: &TaskBoard, title: &String): Option<u64> {
-    //     // Your code here
-    //     // Use a while loop to iterate
-    //     // Use option::some(index) if found
-    //     // Use option::none() if not found
-    // }
+    public fun find_task_by_title(board: &TaskBoard, title: &String): Option<u64> {
+        let mut index = 0;
+        let length = vector::length(&board.tasks);
+
+        while(index < length){
+            let task = vector::borrow(&board.tasks, index);
+            
+            if(*&task.title == *title){
+                return option::some(index);
+            };
+            index = index + 1;
+        };
+        option::none()
+    }
 }
 
