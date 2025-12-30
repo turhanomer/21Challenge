@@ -84,25 +84,53 @@ module challenge::day_14 {
 
     // Note: assert! is a built-in macro in Move 2024 - no import needed!
 
-    // TODO: Write at least 3 tests:
-    // 
-    // Test 1: test_create_board_and_add_task
-    // - Create a board with an owner
-    // - Add a task
-    // - Verify the task was added
-    // 
-    // Test 2: test_complete_task
-    // - Create board, add tasks
-    // - Complete a task
-    // - Verify completed_count is correct
-    // 
-    // Test 3: test_total_reward
-    // - Create board, add multiple tasks with different rewards
-    // - Verify total_reward is correct
-    // 
-    // #[test]
-    // fun test_create_board_and_add_task() {
-    //     // Your code here
-    // }
+    // TODO: Write at least 3 tests: 
+        #[test]
+        fun test_create_board_and_add_task() {
+            let owner = @0x03;
+            let mut taskBoard = new_board(owner);
+
+            let task = new_task(string::utf8(b"write code"), 100);
+            add_task(&mut taskBoard, task);
+
+            let length = vector::length(&taskBoard.tasks);
+            assert_eq!(length, 1);
+        }
+
+        #[test]
+        fun test_complete_task(){
+            let owner = @0x03;
+            let mut taskBoard = new_board(owner);
+
+            let t1 = new_task(std::string::utf8(b"Learn Move"), 10);
+            let t2 = new_task(std::string::utf8(b"Learn Walrus"), 50);
+            let t3 = new_task(std::string::utf8(b"Learn Enoki"), 100);
+
+            add_task(&mut taskBoard, t1);
+            add_task(&mut taskBoard, t2);
+            add_task(&mut taskBoard, t3);
+
+            let task = vector::borrow_mut(&mut taskBoard.tasks, 0);
+            complete_task(task);
+            
+            assert_eq!(completed_count(&taskBoard), 1);     
+        }
+
+        #[test]
+        fun test_total_reward(){
+            let owner = @0x03;
+            let mut taskBoard = new_board(owner);
+            
+            let task1 = new_task(string::utf8(b"Learn Move"), 50);
+            let task2 = new_task(string::utf8(b"Learn Walrus"), 100);
+            let task3 = new_task(string::utf8(b"Learn Enoki"), 25);
+            
+            add_task(&mut taskBoard, task1);
+            add_task(&mut taskBoard, task2);
+            add_task(&mut taskBoard, task3);
+            
+            let total = total_reward(&taskBoard);
+            assert_eq!(total, 175);
+        }
 }
 
