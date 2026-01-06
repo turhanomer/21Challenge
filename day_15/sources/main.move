@@ -17,11 +17,6 @@ module challenge::day_15 {
     const E_PLOT_ALREADY_EXISTS: u64 = 4;
 
     // TODO: Define a struct called 'FarmCounters' with:
-    // - planted: u64
-    // - harvested: u64
-    // - plots: vector<u8>
-    // Add 'copy', 'drop', and 'store' abilities
-    // (store is needed because we'll put this in an object later)
     public struct FarmCounters has copy, drop, store {
         planted: u64,
         harvested: u64,

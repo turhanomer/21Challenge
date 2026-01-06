@@ -82,5 +82,6 @@ module challenge::day_07 {
         let completed_habit = vector::borrow(&list.habits, 0);
         assert!(completed_habit.completed == true);
     }
+    
 }
 
